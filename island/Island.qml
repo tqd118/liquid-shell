@@ -1,7 +1,5 @@
 import QtQuick
-import "modules"
 import qs.state
-import "content"
 
 Item {
     id: root
@@ -23,10 +21,7 @@ Item {
     // ── Контент ───────────────────────────────────────────────────────────────
 
     Content {
-        width: IslandState.baseWidth
-        height: IslandState.baseheight
-        anchors.horizontalCenter: parent.horizontalCenter;
-        anchors.top: parent.top;
+        anchors.fill: parent
         z: 10
     }
 

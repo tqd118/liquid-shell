@@ -68,6 +68,6 @@ QtObject {
     readonly property color foreground: light1
     readonly property color foregroundDim: light4
 
-    readonly property color accent: brightRed
-    readonly property color accentDim: neutralRed
+    readonly property color accent: neutralBlue
+    readonly property color accentDim: fadedBlue
 }

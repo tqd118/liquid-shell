@@ -1,6 +1,5 @@
 import QtQuick
 import qs.state
-import qs.modules
 
 Item {
     id: root

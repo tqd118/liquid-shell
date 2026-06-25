@@ -3,8 +3,8 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 import Quickshell.Services.SystemTray
-
-import "../"
+import qs.state
+import qs.components
 
 Item {
     id: root
@@ -52,14 +52,31 @@ Item {
                     acceptedButtons: Qt.LeftButton | Qt.RightButton
 
                     onClicked: mouse => {
-                        const item = _delegate.modelData
+                        const item = _delegate.modelData;
+                        const openMenu = () => {
+                            IslandState.openComponent(
+                                Components.trayMenuComponent,
+                                400, 60,
+                                {
+                                    menu: _delegate.modelData.menu,
+                                    trayName: _delegate.modelData.title
+                                },
+                                {
+                                    menuHeightChanged: function(newHeight) {
+                                        IslandState.expand(400, newHeight)
+                                    }
+                                }
+                            )
+                        }
+
                         if (mouse.button === Qt.LeftButton) {
-                            if (item.onlyMenu) {
-                                if (item.hasMenu)
-                                    item.activate()
+                            if (item.onlyMenu && item.hasMenu) {
+                                openMenu()
                             } else {
                                 item.activate()
                             }
+                        } else {
+                            openMenu()
                         }
                     }
                 }

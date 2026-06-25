@@ -1,9 +1,9 @@
 import QtQuick
-import "tray"
-import qs.state
+import qs.modules
 
 Item {
     id: root
+    anchors.fill: parent
 
     Clock {
         id: clock
@@ -17,12 +17,7 @@ Item {
     }
 
     TrayList {
-        anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: IslandState.toggle(400, 140);
+        anchors.verticalCenter: parent.verticalCenter
     }
 }

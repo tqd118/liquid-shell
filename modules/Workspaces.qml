@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell.Hyprland
-import "../../widgets"
+import qs.theme
+import "../widgets"
 
 Item {
     id: root
@@ -23,7 +24,7 @@ Item {
         id: highlight
         diameter: 20
         centerY: root.rowY
-        fillColor: "#6478c8"
+        fillColor: Theme.accent
     }
 
     Repeater {
@@ -48,7 +49,7 @@ Item {
                 text: index + 1
                 font.pixelSize: 14
                 font.bold: index === root.activeIndex
-                color: index === root.activeIndex ? "white" : "#cfd6ff"
+                color: index === root.activeIndex ? Theme.foreground : Theme.light3
                 z: 2
             }
         }
