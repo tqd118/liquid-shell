@@ -20,7 +20,6 @@ Item {
     }
 
     implicitWidth: _row.implicitWidth
-    implicitHeight: 36
 
     Row {
         id: _row
@@ -81,6 +80,11 @@ Item {
                     }
                 }
             }
+        }
+
+        Battery {
+            width: 28
+            height: 28
         }
     }
 }

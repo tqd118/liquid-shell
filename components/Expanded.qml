@@ -5,7 +5,7 @@ Item {
 
     Text {
         anchors.centerIn: parent
-        text: "Expanded island"
+        text: "Expanded"
         color: "white"
         font.pixelSize: 16
         font.bold: true

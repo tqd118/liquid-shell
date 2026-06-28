@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import qs.state
 import qs.theme
+import qs.widgets
 
 Item {
     id: root
@@ -102,36 +103,12 @@ Item {
             anchors.rightMargin: 8
             spacing: 10
 
-            Rectangle {
-                width: 28
-                height: 28
-                radius: 8
-                color: backMouseArea.containsMouse ? Theme.accentDim : Theme.accent
-                border.color: "#454b58"
-                border.width: 1
-                anchors.verticalCenter: parent.verticalCenter
+            BackButton {
+                baseColor: Theme.accent
+                hoverColor: Theme.accentDim
+                arrowColor: Theme.light0Hard
 
-                Text {
-                    anchors.centerIn: parent
-                    text: "←"
-                    color: "#f0f2f5"
-                    font.pixelSize: 16
-                    font.bold: true
-                }
-
-                MouseArea {
-                    id: backMouseArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: IslandState.closeAll()
-                }
-
-                Behavior on color {
-                    ColorAnimation {
-                        duration: 150
-                        easing.type: Easing.OutQuad
-                    }
-                }
+                onClick: () => IslandState.closeAll()
             }
 
             RowLayout {

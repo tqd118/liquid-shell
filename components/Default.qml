@@ -19,5 +19,6 @@ Item {
     TrayList {
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
+        implicitHeight: 36
     }
 }

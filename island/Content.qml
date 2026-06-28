@@ -41,13 +41,14 @@ Item {
 
     MouseArea {
         anchors.fill: parent
-        acceptedButtons: Qt.LeftButton
+        propagateComposedEvents: true
         onClicked: {
             if (IslandState.currentComponent === null) {
                 IslandState.openComponent(Components.expandedComponent, 380, 100);
-            } else {
+            } else if (IslandState.currentComponent === Components.expandedComponent) {
                 IslandState.closeAll();
             }
+            
         }
     }
 

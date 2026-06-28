@@ -4,7 +4,8 @@ import QtQuick
 QtObject {
     id: root
 
-    property bool isExpanded: (islandWidth !== baseWidth || islandHeigh !== baseheight)
+    property bool isExpanded: (islandWidth !== baseWidth || islandHeigh !== baseheight) || currentComponent
+    property bool isKbFocusNeeded: false
 
     property var currentComponent: null
     property var currentProperties: ({})
@@ -39,6 +40,7 @@ QtObject {
 
         root.close()
         root.componentClosed()
+        root.isKbFocusNeeded = false
     }
 
     function toggle(width, height) {
