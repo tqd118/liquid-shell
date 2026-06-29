@@ -258,7 +258,14 @@ Item {
                             enabled: !_delegate.separator && enabled
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
-                            onClicked: _delegate.modelData.hasChildren ? root.openSubmenu(_delegate.modelData) : _delegate.modelData.triggered()
+                            onClicked: () => {
+                                if (_delegate.modelData.hasChildren) {
+                                    root.openSubmenu(_delegate.modelData)
+                                } else {
+                                    _delegate.modelData.triggered();
+                                    IslandState.closeAll();
+                                }
+                            }
                         }
                     }
                 }
