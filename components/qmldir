@@ -5,3 +5,4 @@ TrayMenu 1.0 TrayMenu.qml
 BatteryInfo 1.0 BatteryInfo.qml
 AppLauncher 1.0 AppLauncher.qml
 Notification 1.0 Notification.qml
+AudioMixer 1.0 AudioMixer.qml

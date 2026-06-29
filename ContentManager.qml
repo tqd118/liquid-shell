@@ -42,4 +42,14 @@ Scope {
             IslandState.closeAll();
         }
     }
+
+    Connections {
+        target: AudioService
+
+        function onProviderVolumeChanged() {
+            if (IslandState.currentComponent !== Components.audioMixer) {
+                IslandState.openComponent(Components.audioMixer, 260, 40)
+            }
+        }
+    }
 }

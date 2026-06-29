@@ -29,6 +29,11 @@ Item {
         Notification { anchors.fill: parent }
     } 
 
+    property var audioMixer: Component {
+        id: audioMixer
+        AudioMixer { anchors.fill: parent }
+    }
+
     property var trayMenuMenu: null
 
     property Component trayMenuComponent: Component {
