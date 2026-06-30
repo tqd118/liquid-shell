@@ -47,6 +47,7 @@ Item {
 
         copyProcess.command = ["wl-copy", String(result)]
         copyProcess.running = true
+        copyPulse.start()
         IslandState.closeAll()
     }
 
@@ -56,20 +57,37 @@ Item {
 
     width: parent ? parent.width : 0
     height: hasResult ? rowHeight : 0
-    visible: hasResult
+    visible: height > 0
+    clip: true
+
+    Behavior on height {
+        NumberAnimation { duration: 180; easing.type: Easing.OutCubic }
+    }
 
     Rectangle {
-        anchors.fill: parent
+        id: card
+        width: parent.width
+        height: root.rowHeight
+        y: root.height - height
         radius: root.rowRadius
+        opacity: root.hasResult ? 1 : 0
+        scale: root.hasResult ? 1 : 0.9
         color: Qt.rgba(root.colorAccent.r, root.colorAccent.g, root.colorAccent.b,
                         root.current ? root.selectedTintOpacity : root.tintOpacity)
 
+        Behavior on opacity {
+            NumberAnimation { duration: 160; easing.type: Easing.OutCubic }
+        }
+        Behavior on scale {
+            NumberAnimation { duration: 220; easing.type: Easing.OutBack; easing.overshoot: 1.4 }
+        }
         Behavior on color {
             ColorAnimation { duration: 100 }
         }
 
         Rectangle {
             visible: root.current
+            opacity: root.current ? 1 : 0
             width: 3
             radius: 2
             color: root.colorAccent
@@ -77,6 +95,10 @@ Item {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.margins: 6
+
+            Behavior on opacity {
+                NumberAnimation { duration: 120 }
+            }
         }
 
         Text {
@@ -102,8 +124,19 @@ Item {
             font.pixelSize: root.fontSize
             color: root.current ? root.colorAccent : root.colorTextMuted
             anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: -1
             anchors.right: parent.right
             anchors.rightMargin: 12
+
+            Behavior on color {
+                ColorAnimation { duration: 100 }
+            }
+
+            SequentialAnimation {
+                id: copyPulse
+                NumberAnimation { target: clipboardIcon; property: "scale"; to: 0.97; duration: 90; easing.type: Easing.OutQuad }
+                NumberAnimation { target: clipboardIcon; property: "scale"; to: 1.0; duration: 140; easing.type: Easing.OutBack }
+            }
         }
 
         MouseArea {

@@ -24,7 +24,12 @@ Item {
 
     width: parent ? parent.width : 0
     height: hasResults ? Math.min(matches.length, 4) * rowHeight + Math.max(0, Math.min(matches.length, 4) - 1) * rowItemSpacing : 0
-    visible: hasResults
+    visible: height > 0
+    clip: true
+
+    Behavior on height {
+        NumberAnimation { duration: 180; easing.type: Easing.OutCubic }
+    }
 
     function moveUp() { currentIndex = Math.max(0, currentIndex - 1) }
     function moveDown() { currentIndex = Math.min(matches.length - 1, currentIndex + 1) }
@@ -43,6 +48,22 @@ Item {
         currentIndex: root.currentIndex
 
         model: root.matches
+
+        populate: Transition {
+            NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 160 }
+            NumberAnimation { property: "scale"; from: 0.94; to: 1; duration: 200; easing.type: Easing.OutBack; easing.overshoot: 1.2 }
+        }
+        add: Transition {
+            NumberAnimation { property: "opacity"; from: 0; to: 1; duration: 140 }
+            NumberAnimation { property: "scale"; from: 0.94; to: 1; duration: 180; easing.type: Easing.OutBack; easing.overshoot: 1.2 }
+        }
+        remove: Transition {
+            NumberAnimation { property: "opacity"; to: 0; duration: 110 }
+            NumberAnimation { property: "scale"; to: 0.92; duration: 110 }
+        }
+        displaced: Transition {
+            NumberAnimation { properties: "x,y"; duration: 170; easing.type: Easing.OutCubic }
+        }
 
         delegate: Item {
             id: entry
@@ -66,6 +87,7 @@ Item {
 
                 Rectangle {
                     visible: entry.selected
+                    opacity: entry.selected ? 1 : 0
                     width: 3
                     radius: 2
                     color: root.colorAccent
@@ -73,6 +95,10 @@ Item {
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                     anchors.margins: 6
+
+                    Behavior on opacity {
+                        NumberAnimation { duration: 120 }
+                    }
                 }
 
                 Text {

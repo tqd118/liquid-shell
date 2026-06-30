@@ -1,8 +1,4 @@
 import QtQuick
-import QtQuick.Controls
-import Quickshell
-import Quickshell.Widgets
-import Quickshell.Hyprland
 
 import qs.theme
 import qs.state
@@ -40,6 +36,7 @@ Item {
     Component.onCompleted: {
         searchField.forceActiveFocus()
         root.recalcHeight()
+        entrance.start()
     }
 
     Component.onDestruction: searchField.text = ""
@@ -53,6 +50,16 @@ Item {
     function clampSelection() {
         if (selectedIndex > totalSlots - 1)
             selectedIndex = Math.max(0, totalSlots - 1)
+    }
+
+    opacity: 0
+    scale: 0.97
+    transformOrigin: Item.Top
+
+    ParallelAnimation {
+        id: entrance
+        NumberAnimation { target: root; property: "opacity"; to: 1; duration: 160; easing.type: Easing.OutCubic }
+        NumberAnimation { target: root; property: "scale"; to: 1; duration: 220; easing.type: Easing.OutBack; easing.overshoot: 1.1 }
     }
 
     Column {
@@ -72,6 +79,20 @@ Item {
             height: 34
             radius: 10
             color: root.colorBg
+            clip: true
+
+            Rectangle {
+                anchors.fill: parent
+                radius: parent.radius
+                color: "transparent"
+                border.width: 1.2
+                border.color: root.colorAccent
+                opacity: searchField.activeFocus ? 0.45 : 0
+
+                Behavior on opacity {
+                    NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                }
+            }
 
             TextInput {
                 id: searchField
