@@ -3,6 +3,6 @@ Default 1.0 Default.qml
 Expanded 1.0 Expanded.qml
 TrayMenu 1.0 TrayMenu.qml
 BatteryInfo 1.0 BatteryInfo.qml
-AppLauncher 1.0 AppLauncher.qml
+Launcher 1.0 Launcher.qml
 Notification 1.0 Notification.qml
 AudioMixer 1.0 AudioMixer.qml

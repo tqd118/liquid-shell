@@ -19,9 +19,9 @@ Item {
         BatteryInfo { anchors.fill: parent }
     }
 
-    property var appLauncher: Component {
-        id: appLauncher
-        AppLauncher { anchors.fill: parent }
+    property var launcher: Component {
+        id: launcher
+        Launcher { anchors.fill: parent }
     }
 
     property var notification: Component {

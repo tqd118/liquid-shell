@@ -320,16 +320,4 @@ Item {
             }
         }
     }
-
-    Item {
-        id: badgeRow
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-
-        visible: Notifications.count > 1
-        height: root.badgeHeight
-
-        
-    }
 }

@@ -14,7 +14,7 @@ Scope {
                 IslandState.closeAll()
             } else {
                 IslandState.isKbFocusNeeded = true
-                IslandState.openComponent(Components.appLauncher, 320, 218, null, {
+                IslandState.openComponent(Components.launcher, 320, 212, null, {
                     listheightChanged: function(newHeight) {
                         IslandState.expand(320, newHeight)
                     }

@@ -25,8 +25,10 @@ QtObject {
     property int islandHeigh: baseheight
 
     function expand(width, height) {
-        root.islandWidth = width
-        root.islandHeigh = height
+        if (root.currentComponent) {
+            root.islandWidth = width
+            root.islandHeigh = height
+        }
     }
 
     function closeAll() {
@@ -52,8 +54,10 @@ QtObject {
     }
 
     function change(widthDiff, heightDiff) {
-        root.islandWidth += widthDiff
-        root.islandHeigh += heightDiff
+        if (root.currentComponent) {
+            root.islandWidth += widthDiff
+            root.islandHeigh += heightDiff
+        }
     }
 
     function openComponent(component, width, height, properties, signalHandlers) {
